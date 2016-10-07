@@ -42,6 +42,8 @@ def new_post():
 
         data = request.form
 
+        logging.error(data['token'])
+
         if not 'token' in data:
             raise Exception('Missing necessary token in the post data')
 
