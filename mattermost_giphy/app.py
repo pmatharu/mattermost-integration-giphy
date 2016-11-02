@@ -85,7 +85,7 @@ def giphy_translate(text):
     """
     try:
         params = {}
-        params['s'] = text
+        params['q'] = text
         params['rating'] = RATING
         params['api_key'] = GIPHY_API_KEY
         params['limit'] = 1
@@ -99,7 +99,7 @@ def giphy_translate(text):
 
         resp_data = resp.json()
 
-        url = list(urlsplit(resp_data['data']['images']['original']['url']))
+        url = list(urlsplit(resp_data['data'][0]['images']['original']['url']))
         url[0] = SCHEME.lower()
 
         return urlunsplit(url)
