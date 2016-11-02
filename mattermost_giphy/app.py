@@ -88,7 +88,7 @@ def giphy_translate(text):
         params['q'] = text
         params['rating'] = RATING
         params['api_key'] = GIPHY_API_KEY
-        params['limit'] = 1
+        params['limit'] = 10
         params['offset'] = random.randint(0, 9)
 
         resp = requests.get('{}://api.giphy.com/v1/gifs/search'.format(SCHEME), params=params, verify=True)
