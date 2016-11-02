@@ -3,6 +3,7 @@ import logging
 import os
 import sys
 import json
+import random
 from urlparse import urlsplit
 from urlparse import urlunsplit
 
@@ -87,8 +88,10 @@ def giphy_translate(text):
         params['s'] = text
         params['rating'] = RATING
         params['api_key'] = GIPHY_API_KEY
+        params['limit'] = 1
+        params['offset'] = random.randint(0, 9)
 
-        resp = requests.get('{}://api.giphy.com/v1/gifs/translate'.format(SCHEME), params=params, verify=True)
+        resp = requests.get('{}://api.giphy.com/v1/gifs/search'.format(SCHEME), params=params, verify=True)
 
         if resp.status_code is not requests.codes.ok:
             logging.error('Encountered error using Giphy API, text=%s, status=%d, response_body=%s' % (text, resp.status_code, resp.json()))
